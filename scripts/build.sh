@@ -9,9 +9,9 @@ PROJECT_PATH="$(pwd)"
 
 echo "currently in $PROJECT_PATH"
 
-if [ -d "$PROJECT_PATH/magento" ]
+if [ -d "$PROJECT_PATH" ]
 then
-   cd "$PROJECT_PATH/magento"
+   cd "$PROJECT_PATH"
 
    /usr/local/bin/composer install --dry-run --no-dev --no-progress &> /dev/null
 

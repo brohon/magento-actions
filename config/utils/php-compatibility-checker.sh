@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 
-MAGE_VERSION=$(grep -ni '"version"' magento/composer.json | grep -o -E '\:\ .+' | cut -d' ' -f6 | cut -d',' -f1 | cut -d'"' -f2;);
+MAGE_VERSION=$(grep -ni '"version"' composer.json | grep -o -E '\:\ .+' | cut -d' ' -f6 | cut -d',' -f1 | cut -d'"' -f2;);
 
 set -e
 echo "Current magento version is $MAGE_VERSION"
 pwd
-ls -lath magento/composer.json
+ls -lath composer.json
 
 
 majorVersion=${MAGE_VERSION:2:1}
