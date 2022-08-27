@@ -22,7 +22,7 @@ inputs:
     default: 'Magento2'
 runs:
   using: 'docker'
-  image: 'dockerfile'
+  image: 'Dockerfile'
 branding:
   icon: 'arrow-up-circle'
   color: 'blue'
