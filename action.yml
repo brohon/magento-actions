@@ -4,16 +4,16 @@ author: 'MAD IT (www.madit.fr)'
 inputs: 
   php:
     description: 'version of php to use 7.1 or 7.2'
-    default: '7.1'
+    default: '7.4'
   process:
     description: 'Possible values: build, static-test, integration-test, unit-test, phpcs-test, deploy-staging, deploy-production, cleanup-staging, cleanup-production'
     default: 'build'
   override_settings:
       description:  'override config and scripts dirs with your own setup/config, must respect default scalfolding'
-      default: false
+      default: 1
   elasticsuite:
     description: 'your src is using elasticsuite?  1 or 0'
-    default: 0
+    default: 1
   extension:
     description: 'the third party module to test in app/code.  Vendor or Vendor/MyModule'
     default: ''
