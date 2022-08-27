@@ -1,7 +1,7 @@
 #!/bin/sh -l
 
 echo "hello your setup is $INPUT_PHP & $INPUT_PROCESS & $INPUT_OVERRIDE_SETTINGS"
-
+echo "This is a test of this script."
 
 if [ $INPUT_PHP = 'auto' ]
 then
