@@ -47,7 +47,7 @@ php7.4 ./vendor/bin/dep deploy-bucket staging \
 -o host_bucket_path=$HOST_DEPLOY_PATH_BUCKET \
 -o deploy_path_custom=$HOST_DEPLOY_PATH \
 -o write_use_sudo=$WRITE_USE_SUDO
-
+echo "starting the change to release dir"
 # setup magento
 ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  staging "cd $HOST_DEPLOY_PATH/release/magento/ && /bin/bash $HOST_DEPLOY_PATH/deployer/scripts/staging/release_setup.sh"
 
