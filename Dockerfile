@@ -106,10 +106,6 @@ RUN apt-get -y update \
     php8.1-xdebug \
     php8.1-soap \
     php8.1-bcmath \
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash \
-    export NVM_DIR="$HOME/.nvm" \
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" \
-    nvm install v16.12.0 \
     zip \
     default-mysql-client \
     && apt-get clean \
