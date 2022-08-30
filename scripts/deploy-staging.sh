@@ -9,6 +9,7 @@ PROJECT_PATH="$(pwd)"
 echo "project path is $PROJECT_PATH";
 
 which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )
+apt-get install sshpass
 eval $(ssh-agent -s)
 mkdir ~/.ssh/ && echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
 ssh-add ~/.ssh/id_rsa
