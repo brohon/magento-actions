@@ -11,13 +11,6 @@ else
   update-alternatives --set php /usr/bin/php${INPUT_PHP}
 fi
 
-
-if [ $INPUT_COMPOSER_VERSION -ne 0 ]
-then
-  php7.2 /usr/local/bin/composer self-update --${INPUT_COMPOSER_VERSION}
-fi
-
-
 if [ $INPUT_OVERRIDE_SETTINGS = 1 ]
 then
   [ -d config ] && ls ./config/*
