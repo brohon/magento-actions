@@ -12,7 +12,7 @@ else
 fi
 
 
-if [ "$INPUT_COMPOSER_VERSION" -ne 0 ]
+if [ $INPUT_COMPOSER_VERSION -ne 0 ]
 then
   php7.2 /usr/local/bin/composer self-update --${INPUT_COMPOSER_VERSION}
 fi
