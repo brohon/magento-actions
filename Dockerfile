@@ -98,8 +98,9 @@ RUN touch ~/.bash_profile \
     && [ -s "$NVM_DIR/bash_completion" ] \
     && \. "$NVM_DIR/bash_completion" \
     && nvm install v16.12.0 \
-    && source ~/.nvm/nvm.sh \
-    && npm install --global yarn \
-    && npm install --global gulp-cli
+    && source ~/.nvm/nvm.sh
+    
+RUN npm install --global yarn 
+RUN npm install --global gulp-cli
 
 ENTRYPOINT ["/entrypoint.sh"]
