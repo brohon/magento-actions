@@ -5,7 +5,7 @@ LABEL org.opencontainers.image.source="https://github.com/MAD-I-T/magento-action
 
 RUN useradd dave
 
-USER dave
+
 
 RUN echo 'deb  http://deb.debian.org/debian  buster contrib non-free' >> /etc/apt/sources.list
 RUN echo 'deb-src  http://deb.debian.org/debian  buster contrib non-free' >> /etc/apt/sources.list
@@ -90,5 +90,5 @@ RUN  mkdir /opt/magerun/ \
     && curl -sS -O https://files.magerun.net/n98-magerun2-latest.phar \
     && curl -sS -o n98-magerun2-latest.phar.sha256 https://files.magerun.net/sha256.php?file=n98-magerun2-latest.phar \
     && shasum -a 256 -c n98-magerun2-latest.phar.sha256
-
+USER dave
 ENTRYPOINT ["/entrypoint.sh"]
