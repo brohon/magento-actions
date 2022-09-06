@@ -90,9 +90,9 @@ RUN  mkdir /opt/magerun/ \
 
 SHELL ["/bin/bash", "--login", "-c"]
 
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-RUN nvm install v16.12.0
-RUN npm install --global yarn
-RUN npm install --global gulp-cli
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash \
+    && nvm install v16.12.0 \
+    && npm install --global yarn \
+    && npm install --global gulp-cli
 
 ENTRYPOINT ["/entrypoint.sh"]
