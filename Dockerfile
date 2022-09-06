@@ -90,17 +90,19 @@ RUN  mkdir /opt/magerun/ \
 
 SHELL ["/bin/bash", "--login", "-c"]
 
-RUN touch ~/.bash_profile \
-    && curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash \
-    && export NVM_DIR="$HOME/.nvm" \
-    && [ -s "$NVM_DIR/nvm.sh" ] \
-    && \. "$NVM_DIR/nvm.sh" \
-    && [ -s "$NVM_DIR/bash_completion" ] \
-    && \. "$NVM_DIR/bash_completion" \
-    && nvm install v16.12.0 \
-    && source ~/.nvm/nvm.sh
-    
-RUN npm install --global yarn 
-RUN npm install --global gulp-cli
+ENV NODE_VERSION=16.5
+ENV NVM_DIR=/root/.nvm
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+RUN . "$NVM_DIR/nvm.sh" \
+    && nvm install ${NODE_VERSION}
+RUN . "$NVM_DIR/nvm.sh" \
+    && nvm use v${NODE_VERSION}
+RUN . "$NVM_DIR/nvm.sh" \
+    && nvm alias default v${NODE_VERSION}
+ENV PATH="/root/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        npm
+RUN npm install -g yarn
 
 ENTRYPOINT ["/entrypoint.sh"]
