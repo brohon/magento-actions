@@ -100,6 +100,6 @@ RUN touch ~/.bash_profile \
     && nvm install v16.12.0 \
     && source ~/.nvm/nvm.sh \
     && npm install --global yarn \
-    && npm install --global gulp-cli \
+    && npm install --global gulp-cli
 
 ENTRYPOINT ["/entrypoint.sh"]
