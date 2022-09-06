@@ -103,6 +103,5 @@ ENV PATH="/root/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         npm
-RUN npm install -g yarn
 
 ENTRYPOINT ["/entrypoint.sh"]
