@@ -88,20 +88,4 @@ RUN  mkdir /opt/magerun/ \
     && curl -sS -o n98-magerun2-latest.phar.sha256 https://files.magerun.net/sha256.php?file=n98-magerun2-latest.phar \
     && shasum -a 256 -c n98-magerun2-latest.phar.sha256
 
-SHELL ["/bin/bash", "--login", "-c"]
-
-ENV NODE_VERSION=16.12.0
-ENV NVM_DIR=/root/.nvm
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-RUN . "$NVM_DIR/nvm.sh" \
-    && nvm install ${NODE_VERSION}
-RUN . "$NVM_DIR/nvm.sh" \
-    && nvm use v${NODE_VERSION}
-RUN . "$NVM_DIR/nvm.sh" \
-    && nvm alias default v${NODE_VERSION}
-ENV PATH="/root/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-        npm
-
 ENTRYPOINT ["/entrypoint.sh"]
