@@ -90,7 +90,7 @@ RUN  mkdir /opt/magerun/ \
 
 SHELL ["/bin/bash", "--login", "-c"]
 
-ENV NODE_VERSION=16.5
+ENV NODE_VERSION=16.12.0
 ENV NVM_DIR=/root/.nvm
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 RUN . "$NVM_DIR/nvm.sh" \
