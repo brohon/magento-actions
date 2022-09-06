@@ -88,4 +88,11 @@ RUN  mkdir /opt/magerun/ \
     && curl -sS -o n98-magerun2-latest.phar.sha256 https://files.magerun.net/sha256.php?file=n98-magerun2-latest.phar \
     && shasum -a 256 -c n98-magerun2-latest.phar.sha256
 
+SHELL ["/bin/bash", "--login", "-c"]
+
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+RUN nvm install v16.12.0
+RUN npm install --global yarn
+RUN npm install --global gulp-cli
+
 ENTRYPOINT ["/entrypoint.sh"]
