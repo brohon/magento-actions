@@ -2,8 +2,6 @@ FROM debian:buster
 
 LABEL org.opencontainers.image.source="https://github.com/MAD-I-T/magento-actions"
 
-RUN useradd dave
-
 RUN echo 'deb  http://deb.debian.org/debian  buster contrib non-free' >> /etc/apt/sources.list
 RUN echo 'deb-src  http://deb.debian.org/debian  buster contrib non-free' >> /etc/apt/sources.list
 
@@ -73,12 +71,17 @@ RUN curl -LO https://getcomposer.org/composer-stable.phar \
     && chmod +x ./composer.phar \
     && mv ./composer.phar /usr/local/bin/composer 
 
+COPY LICENSE README.md /
+COPY scripts /opt/scripts
+COPY config /opt/config
 COPY entrypoint.sh /entrypoint.sh
+
+RUN cd /opt/config/php-deployer/ &&  /usr/bin/php8.1 /usr/local/bin/composer install
 
 RUN  mkdir /opt/magerun/ \
     && cd /opt/magerun/ \
     && curl -sS -O https://files.magerun.net/n98-magerun2-latest.phar \
     && curl -sS -o n98-magerun2-latest.phar.sha256 https://files.magerun.net/sha256.php?file=n98-magerun2-latest.phar \
     && shasum -a 256 -c n98-magerun2-latest.phar.sha256
-USER dave
+
 ENTRYPOINT ["/entrypoint.sh"]
