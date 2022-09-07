@@ -90,6 +90,7 @@ SHELL ["/bin/bash", "--login", "-c"]
 
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 RUN nvm install 16.12.0
+RUN nvm use 16.12.0
 RUN npm install --global yarn
 RUN npm install --global gulp-cli
 
