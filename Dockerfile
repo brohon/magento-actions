@@ -2,7 +2,7 @@ FROM debian:buster
 
 LABEL org.opencontainers.image.source="https://github.com/MAD-I-T/magento-actions"
 
-RUN adduser dave
+RUN adduser -u 1001 dave 
 
 RUN echo 'deb  http://deb.debian.org/debian  buster contrib non-free' >> /etc/apt/sources.list
 RUN echo 'deb-src  http://deb.debian.org/debian  buster contrib non-free' >> /etc/apt/sources.list
@@ -86,4 +86,4 @@ RUN  mkdir /opt/magerun/ \
     && curl -sS -o n98-magerun2-latest.phar.sha256 https://files.magerun.net/sha256.php?file=n98-magerun2-latest.phar \
     && shasum -a 256 -c n98-magerun2-latest.phar.sha256
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT "/entrypoint.sh"
