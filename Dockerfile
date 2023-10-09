@@ -73,6 +73,8 @@ RUN curl -LO https://getcomposer.org/composer-stable.phar \
     && chmod +x ./composer.phar \
     && mv ./composer.phar /usr/local/bin/composer 
 
+RUN composer self-update
+
 COPY LICENSE README.md /
 COPY scripts /opt/scripts
 COPY config /opt/config
