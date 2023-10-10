@@ -70,7 +70,7 @@ RUN apt-get -y update \
 
 # Download and install Composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-RUN php -r "if (hash_file('sha384', 'composer-setup.php') === 'EXPECTED_SHA384_HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+RUN php -r "if (hash_file('sha384', 'composer-setup.php') === '3b3b5a899c06a46aec280727bdf50aad14334f6bc40436ea76b07b650870d8f4') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
 RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer --version=2.3.5
 RUN php -r "unlink('composer-setup.php');"
 
