@@ -68,12 +68,13 @@ RUN apt-get -y update \
     /usr/share/doc \
     /usr/share/doc-base
 
-RUN curl -LO https://getcomposer.org/composer-stable.phar \
-    && mv ./composer-stable.phar ./composer.phar \
-    && chmod +x ./composer.phar \
-    && mv ./composer.phar /usr/local/bin/composer 
+# Download and install Composer
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+RUN php -r "if (hash_file('sha384', 'composer-setup.php') === 'EXPECTED_SHA384_HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer --version=2.3.5
+RUN php -r "unlink('composer-setup.php');"
 
-RUN composer self-update
+RUN composer --version
 
 COPY LICENSE README.md /
 COPY scripts /opt/scripts
