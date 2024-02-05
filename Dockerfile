@@ -2,7 +2,7 @@ FROM debian:buster
 
 LABEL org.opencontainers.image.source="https://github.com/MAD-I-T/magento-actions"
 
-RUN adduser -u 1001 dave 
+RUN adduser -u 1000 dave 
 
 RUN echo 'deb  http://deb.debian.org/debian  buster contrib non-free' >> /etc/apt/sources.list
 RUN echo 'deb-src  http://deb.debian.org/debian  buster contrib non-free' >> /etc/apt/sources.list
