@@ -89,37 +89,32 @@ RUN  mkdir /opt/magerun/ \
     && curl -sS -o n98-magerun2-latest.phar.sha256 https://files.magerun.net/sha256.php?file=n98-magerun2-latest.phar \
     && shasum -a 256 -c n98-magerun2-latest.phar.sha256
 
-USER dave
+# Install dependencies for Node.js
+RUN apt-get update && apt-get install -y xz-utils
 
-# Set the working directory to the 'dave' user's home directory
-# This ensures that we're in the right place for installing NVM and that
-# any changes made by the install script will affect the 'dave' user
-WORKDIR /home/dave
+# Download and install Node.js
+ENV NODE_VERSION=16.12.0
+RUN cd /tmp && \
+    curl -fsSLO --compressed "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz" && \
+    tar -xJf "node-v$NODE_VERSION-linux-x64.tar.xz" -C /usr/local --strip-components=1 && \
+    rm "node-v$NODE_VERSION-linux-x64.tar.xz"
 
-SHELL ["/bin/bash", "--login", "-c"]
+# Verify installation
+RUN node -v && npm -v
 
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash \
-    && echo 'export NVM_DIR="$HOME/.nvm"' >> $HOME/.bashrc \
-    && echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $HOME/.bashrc \
-    && echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"' >> $HOME/.bashrc \
-    && source $HOME/.bashrc \
-    && nvm install 16.12.0 \
-    && nvm use 16.12.0 \
-    && npm install --global yarn \
-    && npm install --global gulp-cli
+# Install Yarn globally using npm
+RUN npm install --global yarn
 
-# Switching back to root
-USER root
-WORKDIR /root
-# Repeating the process for root
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash \
-    && echo 'export NVM_DIR="$HOME/.nvm"' >> $HOME/.bashrc \
-    && echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm' >> $HOME/.bashrc \
-    && echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion' >> $HOME/.bashrc \
-    && source $HOME/.bashrc \
-    && nvm install 16.12.0 \
-    && nvm use 16.12.0 \
-    && npm install --global yarn \
-    && npm install --global gulp-cli
+# Verify Yarn installation
+RUN yarn --version
+
+# Install Gulp CLI globally using npm or Yarn
+RUN npm install --global gulp-cli
+# Alternatively, you can use Yarn to install Gulp CLI
+# RUN yarn global add gulp-cli
+
+# Verify Gulp CLI installation
+RUN gulp --version
+
 
 ENTRYPOINT "/entrypoint.sh"
