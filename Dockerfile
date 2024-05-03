@@ -58,6 +58,21 @@ RUN apt-get -y update \
     php8.1-xdebug \
     php8.1-soap \
     php8.1-bcmath \
+    php8.2 \
+    php8.2-common \
+    php8.2-cli \
+    php8.2-curl \
+    php8.2-dev \
+    php8.2-gd \
+    php8.2-intl \
+    php8.2-mysql \
+    php8.2-mbstring \
+    php8.2-xml \
+    php8.2-xsl \
+    php8.2-zip \
+    php8.2-xdebug \
+    php8.2-soap \
+    php8.2-bcmath \
     zip \
     default-mysql-client \
     && apt-get clean \
@@ -81,7 +96,7 @@ COPY scripts /opt/scripts
 COPY config /opt/config
 COPY entrypoint.sh /entrypoint.sh
 
-RUN cd /opt/config/php-deployer/ &&  /usr/bin/php8.1 /usr/local/bin/composer install
+RUN cd /opt/config/php-deployer/ &&  /usr/bin/php8.2 /usr/local/bin/composer install
 
 RUN  mkdir /opt/magerun/ \
     && cd /opt/magerun/ \
