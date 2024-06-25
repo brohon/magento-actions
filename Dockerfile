@@ -108,7 +108,7 @@ RUN  mkdir /opt/magerun/ \
 RUN apt-get update && apt-get install -y xz-utils
 
 # Download and install Node.js
-ENV NODE_VERSION=16.12.0
+ENV NODE_VERSION=20.14.0
 RUN cd /tmp && \
     curl -fsSLO --compressed "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz" && \
     tar -xJf "node-v$NODE_VERSION-linux-x64.tar.xz" -C /usr/local --strip-components=1 && \
