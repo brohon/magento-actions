@@ -1,11 +1,11 @@
-FROM debian:bookwork
+FROM debian:bullseye
 
 LABEL org.opencontainers.image.source="https://github.com/MAD-I-T/magento-actions"
 
 RUN adduser -u 1000 dave 
 
-RUN echo 'deb  http://deb.debian.org/debian  bookwork contrib non-free' >> /etc/apt/sources.list
-RUN echo 'deb-src  http://deb.debian.org/debian  bookworm contrib non-free' >> /etc/apt/sources.list
+RUN echo 'deb  http://deb.debian.org/debian  bullseye contrib non-free' >> /etc/apt/sources.list
+RUN echo 'deb-src  http://deb.debian.org/debian  bullseye contrib non-free' >> /etc/apt/sources.list
 
 RUN apt-get -y update \
     && apt-get -y install \
@@ -19,7 +19,7 @@ RUN apt-get -yq install \
     python-dev
 
 RUN wget -O "/etc/apt/trusted.gpg.d/php.gpg" "https://packages.sury.org/php/apt.gpg" \
-    && sh -c 'echo "deb https://packages.sury.org/php/ bookworm main" > /etc/apt/sources.list.d/php.list'
+    && sh -c 'echo "deb https://packages.sury.org/php/ bullseye main" > /etc/apt/sources.list.d/php.list'
 
 RUN apt-get install -f libgd3 -y
 
