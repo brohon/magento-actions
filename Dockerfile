@@ -28,52 +28,21 @@ RUN apt-get -y update \
     && apt-get -y install \
     git \
     curl \
-    php7.4 \
-    php7.4-common \
-    php7.4-cli \
-    php7.4-curl \
-    php7.4-dev \
-    php7.4-gd \
-    php7.4-intl \
-    php7.4-mysql \
-    php7.4-mbstring \
-    php7.4-xml \
-    php7.4-xsl \
-    php7.4-zip \
-    php7.4-json \
-    php7.4-xdebug \
-    php7.4-soap \
-    php7.4-bcmath \
-    php8.1 \
-    php8.1-common \
-    php8.1-cli \
-    php8.1-curl \
-    php8.1-dev \
-    php8.1-gd \
-    php8.1-intl \
-    php8.1-mysql \
-    php8.1-mbstring \
-    php8.1-xml \
-    php8.1-xsl \
-    php8.1-zip \
-    php8.1-xdebug \
-    php8.1-soap \
-    php8.1-bcmath \
-    php8.2 \
-    php8.2-common \
-    php8.2-cli \
-    php8.2-curl \
-    php8.2-dev \
-    php8.2-gd \
-    php8.2-intl \
-    php8.2-mysql \
-    php8.2-mbstring \
-    php8.2-xml \
-    php8.2-xsl \
-    php8.2-zip \
-    php8.2-xdebug \
-    php8.2-soap \
-    php8.2-bcmath \
+    php8.3 \
+    php8.3-common \
+    php8.3-cli \
+    php8.3-curl \
+    php8.3-dev \
+    php8.3-gd \
+    php8.3-intl \
+    php8.3-mysql \
+    php8.3-mbstring \
+    php8.3-xml \
+    php8.3-xsl \
+    php8.3-zip \
+    php8.3-xdebug \
+    php8.3-soap \
+    php8.3-bcmath \
     zip \
     default-mysql-client \
     && apt-get clean \
@@ -87,7 +56,7 @@ RUN apt-get -y update \
 # Download and install Composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php -r "if (hash_file('sha384', 'composer-setup.php') === 'dac665fdc30fdd8ec78b38b9800061b4150413ff2e3b6f88543c636f7cd84f6db9189d43a81e5503cda447da73c7e5b6') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer --version=2.2.2
+RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer --version=2.7.6
 RUN php -r "unlink('composer-setup.php');"
 
 RUN composer --version
